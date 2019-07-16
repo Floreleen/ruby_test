@@ -1,49 +1,34 @@
 def echo (hello)
-return echo #{hello}
+return hello
 end
 
 def shout (string)
-  string.upcase
-  return string
+  return string.upcase
 end
 
-def repeat (string)
-  2.times {string}
-  return string
+def repeat(word, nbr_repeat=2)
+    repeats = word
+    (nbr_repeat-1).times {repeats +=" "+word}
+    return repeats
 end
 
-def start_of_word (string, num =0)
-  string = [string .. 0]
-  return string
+def start_of_word (alphabet,nbr_first_letters)
+    start_of_word= alphabet.dup
+    ((start_of_word.length)-nbr_first_letters).times{start_of_word=start_of_word.chop!}
+    return start_of_word
 end
 
-def first_word (string1, string2)
-  string = string1
-  return string
+def first_word (words)
+    # split words, take the fisrt one
+   return  words.split(" ")[0]
 end
 
-def titleize (string)
-  string.uppercase
-  return string
-end
-
-def perform
-  echo("hello")
-  echo("bye")
-  shout("hello")
-  shout("hello world")
-  repeat("hello")
-  repeat("hello", 3)
-  start_of_word("hello", 1)
-  start_of_word("Bob", 2)
-  s = "abcdefg"
-  start_of_word(s, 1)
-  start_of_word(s, 2)
-  start_of_word(s, 3)
-  first_word("Hello World")
-  first_word("oh dear")
-  titleize("jaws")
-  titleize("david copperfield")
-  titleize("war and peace")
-  titleize("the bridge over the river kwai")
+#Capitalize words except those less than 3 char
+def titleize (words)
+    #split words
+    splited = words.split(" ")
+    #split all char and capitalize first letter
+    splited[0].capitalize!
+    # less than 3 and rejoin it all
+    splited.map!{|x| x.size>3 ? x.capitalize : x}.join(" ")
 end
